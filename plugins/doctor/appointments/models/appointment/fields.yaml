@@ -1,0 +1,31 @@
+fields:
+    patient_name:
+        label: Name
+        span: auto
+        type: text
+    appointment_time:
+        label: 'Appointment time'
+        mode: datetime
+        span: auto
+        type: datepicker
+    phone:
+        label: Phone
+        span: auto
+        type: text
+    email:
+        label: Email
+        span: auto
+        type: text
+    consultation_type:
+        label: 'Consultation type'
+        span: auto
+        type: dropdown
+    created_at:
+        label: 'Created at'
+        mode: datetime
+        span: auto
+        type: datepicker
+    description:
+        label: Description
+        span: auto
+        type: textarea

@@ -1,0 +1,61 @@
+{% partial 'site/header' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2>Запись на прием</h2>
+            <form
+                data-request="onSaveBooking"
+                data-request-validate
+                data-request-success="handleSuccess"
+                data-request-error="handleError">
+                
+                <div class="form-group">
+                    <label for="patient_name">Ваше имя</label>
+                    <input type="text" class="form-control" id="patient_name" name="patient_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="consultation_type_id">Тип консультации</label>
+                    <select class="form-control" id="consultation_type_id" name="consultation_type_id" required>
+                        <option value="">Выберите тип консультации</option>
+                        {% for id, name in consultationTypes %}
+                            <option value="{{ id }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointment_time">Время приема</label>
+                    <select class="form-control" id="appointment_time" name="appointment_time" required>
+                        <option value="">Выберите время</option>
+                        {% for time in availableTimes %}
+                            <option value="{{ time }}">{{ time }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Описание</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Записаться</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+function handleSuccess(response) {
+    if (response.redirect) {
+        window.location.href = response.redirect;
+    }
+}
+
+function handleError(response) {
+    alert('Произошла ошибка: ' + response.message);
+}
+</script>
+
+{% partial 'site/footer' %} 
